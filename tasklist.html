@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/tasklist.css">
+</head>
+<body>
+    
+  {% if current_user.is_authenticated %}
+
+  <div class="logoutnav">
+    <nav>
+      <h2 class="logo">TODO</h2>
+      <ul>
+        <li class="one"><a href="/addtask">Add Task</a></li>
+        <li class="one"><a href="/gettaskhistory">Get Task History</a></li>
+        <li class="one"><a href="/tasklist">Get Task List</a></li> 
+      </ul>
+      <button type="submit"><a href="logout">Logout</a></button>
+    </nav>
+  </div>
+
+  <div class="list">
+  <h1>List Of Tasks</h1>
+  {% if tasks %}
+  <table>
+    <tr id="header">
+      <th scope="col">Task ID</th>
+      <th scope="col">Task Name</th>
+      <th scope="col">Start Date</th>
+      <th scope="col">Start Time</th>
+      <th scope="col">Due Date</th>
+      <th scope="col">Action</th>
+    </tr>
+    {% for f in tasks %}
+    <tr>
+    <td>{{f[0]}}</td>
+    <td>{{f[1]}}</td>
+    <td>{{f[2]}}</td>
+    <td>{{f[3]}}</td>
+    <td>{{f[4]}}</td>
+    <td>
+        <button><a href="/deletetask/{{f[0]}}">Delete</a></button>
+        <button><a href="/fetchtask/{{f[0]}}">view</a></button>
+    </td>
+  </tr>
+  {% endfor %}
+  </table>
+
+  <div style="color: green ; font-size:larger; font-family:algerian; text-align:center">
+    {% with errors = get_flashed_messages(category_filter=["error"]) %}
+    {% if errors %}
+    <div class="alert-message block-message error">
+      <ul>
+        {% for msg in errors %}
+        <div class="alert alert-danger">
+        <strong> {{ msg }} !!</strong>
+    </div>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+    {% endwith %}
+  </div>
+  {% endif %}
+{% endif %}
+</div>
+</body>
+</html>

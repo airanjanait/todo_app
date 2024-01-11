@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/welcome.css">
+</head>
+<body>
+  <script>
+    alert("You are already a user")
+  </script>
+
+  {% if current_user.is_authenticated %}
+
+  <div class="logoutnav">
+    <nav>
+      <h2 class="logo">TODO</h2>
+      <ul>
+        <li class="one"><a href="/addtask">Add Task</a></li>
+        <li class="one"><a href="/gettaskhistory">Get Task History</a></li>
+        <li class="one"><a href="/tasklist">Get Task List</a></li> 
+      </ul>
+      <button type="submit"><a href="logout">Logout</a></button>
+    </nav>
+  </div>
+
+    <div class="section">
+        <div class="containers">
+            <div class="content-section">
+                <div class="title">
+                    <h1>About Our Todo Application !!</h1>                
+                </div>
+                <div class="content">
+                    <p>Welcome to our Todo Application. <br>The ultimate tool to enhance your productivity and organization ! <br>
+                    Our feature reach platform offers a seamless experience for managing your tasks efficiently. </p>
+                </div>
+            </div>
+            <div class="image-section">
+                <img src="{{url_for('static',filename = 'about_app.png')}}">
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="containers">
+            <div class="content-section">
+                <div class="title">
+                    <h1>Key Features</h1>                
+                </div>
+                <div class="content">
+                    <ul>
+                        <li><h3>Add Task</h3></li>
+                        <p>Easily create and add Tasks to your todo list.</p>
+                        <li><h3>Task History</h3></li>
+                        <p>Retrieve a comprehensive task history, allowing you to track your progress and accommplishments. You also have the option to delete  specific entries from your task history</p>
+                        <li><h4>Task List Management</h4></li>
+                        <p>Effortlessly manage your task list by updating, deleting, or adding tasks. Stay in control of your schedule and customize your todo list to suit your evolving priorities</p>
+                    </ul>
+                </div>
+            </div>
+            <div class="image-section">
+                <img src="{{url_for('static',filename = 'app_feature.png')}}">
+            </div>
+        </div>
+    </div>
+
+    {% else %}
+
+    <div class="loginnav">
+      <nav>
+        <h2 class="logo">TODO</h2>
+        <ul>
+          <li class="one"> <h4>Get Login To Start</h4></li>
+        </ul>
+        <button type="submit"><a href="login">Login</a></button>
+      </nav>
+    </div>
+  
+  
+  <div class="section">
+    <div class="containers">
+        <div class="content-section">
+            <div class="title">
+                <h1>About Our Todo Application !!</h1>                
+            </div>
+            <div class="content">
+                <p>Welcome to our Todo Application. <br>The ultimate tool to enhance your productivity and organization ! <br>
+                Our feature reach platform offers a seamless experience for managing your tasks efficiently. </p>
+            </div>
+        </div>
+        <div class="image-section">
+            <img src="{{url_for('static',filename = 'about_app.png')}}">
+        </div>
+    </div>
+  </div>
+  
+  <div class="section">
+    <div class="containers">
+        <div class="content-section">
+            <div class="title">
+                <h1>Key Features</h1>                
+            </div>
+            <div class="content">
+                <ul>
+                    <li><h3>Add Task</h3></li>
+                    <p>Easily create and add Tasks to your todo list.</p>
+                    <li><h3>Task History</h3></li>
+                    <p>Retrieve a comprehensive task history, allowing you to track your progress and accommplishments. You also have the option to delete  specific entries from your task history</p>
+                    <li><h4>Task List Management</h4></li>
+                    <p>Effortlessly manage your task list by updating, deleting, or adding tasks. Stay in control of your schedule and customize your todo list to suit your evolving priorities</p>
+                </ul>
+            </div>
+        </div>
+        <div class="image-section">
+            <img src="{{url_for('static',filename = 'app_feature.png')}}">
+        </div>
+    </div>
+  </div>
+      {% endif %}
+
+</body>
+</html>
+    
