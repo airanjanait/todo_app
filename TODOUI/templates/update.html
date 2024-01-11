@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/addtask.css">
+</head>
+<body>
+    
+  {% if current_user.is_authenticated %}
+
+  <div class="logoutnav">
+    <nav>
+      <h2 class="logo">TODO</h2>
+      <ul>
+        <li class="one"><a href="/addtask">Add Task</a></li>
+        <li class="one"><a href="/gettaskhistory">Get Task History</a></li>
+        <li class="one"><a href="/tasklist">Get Task List</a></li> 
+      </ul>
+      <button type="submit"><a href="logout">Logout</a></button>
+    </nav>
+  </div>
+  <h1>Update Task</h1>
+ 
+  <form action="/updatetask" method="post">
+  
+    <div class="container">
+        <div class="form registration">
+
+            <div class="inputBox">
+              <input type="id" required="required" name="ID" value="{{data[0]}}">
+              <span>ID</span>
+          </div>
+            <div class="inputBox">
+                <input type="text" required="required" name="TaskName"  value="{{data[1]}}">
+                <span>TaskName</span>
+            </div>
+            <div class="inputBox">
+                <input type="Date" required="required" name="StartDate"  value="{{data[2]}}">
+                <span>Start Date of Task</span>
+            </div>
+            <div class="inputBox">
+              <input type="Time" required="required" name="StartTime"  value="{{data[3]}}">
+              <span>Start Time of Task</span>
+          </div>
+
+          <div class="inputBox">
+            <input type="Date" required="required" name="DueDate"  value="{{data[4]}}">
+            <span>Due Date of Task</span>
+        </div>
+
+            <div class="inputBox">
+                <button type="submit"><span></span> Update Task</button>
+            </div>
+        
+        </div>
+    </div>
+    </form>
+    {% endif %}
+</body>
+</html>

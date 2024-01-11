@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/fetchtask.css">
+</head>
+<body>
+    
+  {% if current_user.is_authenticated %}
+
+  <div class="logoutnav">
+    <nav>
+      <h2 class="logo">TODO</h2>
+      <ul>
+        <li class="one"><a href="/addtask">Add Task</a></li>
+        <li class="one"><a href="/gettaskhistory">Get Task History</a></li>
+        <li class="one"><a href="/tasklist">Get Task List</a></li> 
+      </ul>
+      <button type="submit"><a href="logout">Logout</a></button>
+    </nav>
+  </div>
+
+  <div class="list">
+    <h1 class="registration">Detail of Task ID {{task_info[0]}} </h1>  
+    {% if task_info %}
+    <table>
+    <tr id="header">
+      <th scope="col">Task ID</th>
+      <th scope="col">Task Name</th>
+      <th scope="col">Start Date</th>
+      <th scope="col">Start Time</th>
+      <th scope="col">Due Date</th>
+      <th scope="col">Action</th>
+    </tr>
+    <tr>
+      <td>{{task_info[0]}}</td>
+      <td>{{task_info[1]}}</td>
+      <td>{{task_info[2]}}</td>
+      <td>{{task_info[3]}}</td>
+      <td>{{task_info[4]}}</td>
+    <td>
+        <button><a href="/fetchtoupdate/{{task_info[0]}}">Update</a></button>
+        
+        <button><a href="/maketaskhistory/{{task_info[0]}}">Make History of This Task</a></button>
+    </td>
+  </tr>
+  </table>
+
+  <div style="color: green ; font-size:larger; font-family:algerian; text-align:center">
+    {% with Data = get_flashed_messages(category_filter=["Data"]) %}
+    {% if Data %}
+    <div class="alert-message block-message error">
+      <ul>
+        {% for msg in Data %}
+        <div class="alert alert-danger">
+        <strong> {{ msg }} !!</strong>
+    </div>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+    {% endwith %}
+  </div>
+  {% endif %}
+{% endif %}
+</div>
+</body>
+</html>

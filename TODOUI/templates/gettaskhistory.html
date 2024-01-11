@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="/static/gettaskhistory.css">
+    </head>
+    <body>
+        
+      {% if current_user.is_authenticated %}
+    
+      <div class="logoutnav">
+        <nav>
+          <h2 class="logo">TODO</h2>
+          <ul>
+            <li class="one"><a href="/addtask">Add Task</a></li>
+            <li class="one"><a href="/gettaskhistory">Get Task History</a></li>
+            <li class="one"><a href="/tasklist">Get Task List</a></li> 
+          </ul>
+          <button type="submit"><a href="logout">Logout</a></button>
+        </nav>
+      </div>
+    
+      <div class="list">
+        <h1>Fetch History Of Task</h1>  
+
+        
+      
+  <form action="/gettaskhistory" method="post">
+  
+    <div class="container">
+        <div class="form registration">
+            <div class="inputBox">
+                <input type="Date" required="required" name="date">
+                <span>Start Date of Task</span>
+            </div>
+            <div class="inputBox">
+              <button type="submit"><span></span>Get HISTORY</button>
+          </div>
+    </form>
+
+        {% if data %}
+        <table>
+        <tr id="header">
+          <th scope="col">Task ID</th>
+          <th scope="col">Task Name</th>
+          <th scope="col">Start Date</th>
+          <th scope="col">Due Date</th>
+          <th scope="col">History ID</th>
+        </tr>
+        <tr>
+          <td>{{data[0]}}</td>
+          <td>{{data[1]}}</td>
+          <td>{{data[2]}}</td>
+          <td>{{data[3]}}</td>
+          <td>{{data[4]}}</td>
+      </tr>
+      </table>
+    
+      {% else %}
+      <div class="alert alert-danger">
+        <strong>Data not found</strong> There is not any task assigned on this Date
+      </div>
+      {% endif %}
+      {% endif %}
+    </div>
+    </body>
+    </html>
